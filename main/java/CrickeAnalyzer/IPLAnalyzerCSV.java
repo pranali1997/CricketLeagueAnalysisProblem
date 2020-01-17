@@ -94,4 +94,12 @@ public class IPLAnalyzerCSV {
     public double getStrikeRate() {
         return strikeRate;
     }
+
+    public int getFours() {
+        return fours;
+    }
+
+    public int getSixes() {
+        return sixes;
+    }
 }
