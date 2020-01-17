@@ -90,4 +90,8 @@ public class IPLAnalyzerCSV {
     public double getAverage() {
         return average;
     }
+
+    public double getStrikeRate() {
+        return strikeRate;
+    }
 }

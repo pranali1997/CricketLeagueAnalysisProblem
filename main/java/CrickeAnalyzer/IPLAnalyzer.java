@@ -40,4 +40,14 @@ public class IPLAnalyzer {
         List sortedList = listValue.stream().sorted(Comparator.comparing(IPLAnalyzerCSV::getAverage).reversed()).collect(Collectors.toList());
         return sortedList;
     }
+
+    public List sortingIPLDataStrikeRate() throws  IPLAnalyserException {
+
+        if(listValue == null || listValue.size() == 0) {
+            throw new IPLAnalyserException("NO_CENSUS_DATA", IPLAnalyserException.ExceptionType.INCORRECT_FILE_DATA);
+        }
+        List sortedList = listValue.stream().sorted(Comparator.comparing(IPLAnalyzerCSV::getStrikeRate).reversed()).collect(Collectors.toList());
+        return sortedList;
+    }
+
 }
