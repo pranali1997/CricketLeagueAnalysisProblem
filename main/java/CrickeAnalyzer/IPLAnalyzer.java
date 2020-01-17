@@ -1,24 +1,27 @@
 package CrickeAnalyzer;
 
 import CSVBuilder.CSVBuilderException;
-import CSVBuilder.OpenCSVBuilder;
+import CSVBuilder.CSVBuilderFactory;
+import CSVBuilder.ICSVBuilder;
 
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.stream.StreamSupport;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class IPLAnalyzer {
 
+    List<IPLAnalyzerCSV> listValue=new ArrayList<>();
+
     public int loadIPLData(String csvFilePath) throws IPLAnalyserException {
             try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))){
-                Iterator<IPLAnalyzerCSV> IPLCSVIterator = new OpenCSVBuilder().getCsvFileIterable(reader,IPLAnalyzerCSV.class);
-                return getCount(IPLCSVIterator);
+                ICSVBuilder icsvBuilder = CSVBuilderFactory.createCSVBuilder();
+                List playerList= icsvBuilder.getCSVList(reader, IPLAnalyzerCSV.class);
+
+                playerList.stream().filter(CensusData -> listValue.add((IPLAnalyzerCSV) CensusData)).collect(Collectors.toList());                //Iterator<IPLAnalyzerCSV> IPLCSVIterator = new OpenCSVBuilder().getCsvFileIterable(reader,IPLAnalyzerCSV.class);
+                return playerList.size();
         } catch (IOException e) {
             throw new IPLAnalyserException(e.getMessage(),
                     IPLAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
@@ -28,12 +31,13 @@ public class IPLAnalyzer {
         return 0;
     }
 
-    private <E> int getCount(Iterator<E> iterator){
-        Iterable<E> csvIterable=() -> iterator;
-        int namOfEateries= (int) StreamSupport.stream(csvIterable.spliterator(),false).count();
-        return namOfEateries;
+
+    public List sortingIPLDataAverageRuns() throws  IPLAnalyserException {
+
+        if(listValue == null || listValue.size() == 0) {
+            throw new IPLAnalyserException("NO_CENSUS_DATA", IPLAnalyserException.ExceptionType.INCORRECT_FILE_DATA);
+        }
+        List sortedList = listValue.stream().sorted(Comparator.comparing(IPLAnalyzerCSV::getAverage).reversed()).collect(Collectors.toList());
+        return sortedList;
     }
-
-
-
 }

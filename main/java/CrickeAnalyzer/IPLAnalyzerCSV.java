@@ -23,10 +23,10 @@ public class IPLAnalyzerCSV {
     public int runs;
 
     @CsvBindByName(column = "HS", required = true)
-    public String highScore;
+    public int highScore;
 
     @CsvBindByName(column = "Avg", required = true)
-    public String  average;
+    public double  average;
 
     @CsvBindByName(column = "BF", required = true)
     public int ballFest;
@@ -47,7 +47,7 @@ public class IPLAnalyzerCSV {
     public int sixes;
 
 
-    public IPLAnalyzerCSV(int pos, String player, int matches, int innings, int notOut, int runs, String highScore, String average, int ballFest, double strikeRate, int century, int halfCentury, int fours, int sixes) {
+    public IPLAnalyzerCSV(int pos, String player, int matches, int innings, int notOut, int runs, int highScore, double average, int ballFest, double strikeRate, int century, int halfCentury, int fours, int sixes) {
         this.pos = pos;
         this.player = player;
         this.matches = matches;
@@ -85,5 +85,9 @@ public class IPLAnalyzerCSV {
                 ", fours=" + fours +
                 ", sixes=" + sixes +
                 '}';
+    }
+
+    public double getAverage() {
+        return average;
     }
 }

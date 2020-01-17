@@ -2,7 +2,7 @@ package CrickeAnalyzer;
 
 public class IPLAnalyserException extends Throwable {
     enum ExceptionType {
-        CENSUS_FILE_PROBLEM
+        CENSUS_FILE_PROBLEM, UNABLE_TO_PARSE , INVALID_DELIMITER , INCORRECT_FILE_DATA;
     }
 
     ExceptionType type;
