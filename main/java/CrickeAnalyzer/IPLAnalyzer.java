@@ -50,17 +50,31 @@ public class IPLAnalyzer {
         return sortedList;
     }
 
-    Map<String,IPLAnalyzerCSV> censusDAOMap=new TreeMap<>();
 
-    public List sortingIPLDataBYFoursANDSixex() throws IPLAnalyserException {
+    public List sortingIPLDataBYFoursANDSixes() throws IPLAnalyserException {
         if(listValue == null || listValue.size() == 0) {
             throw new IPLAnalyserException("NO_CENSUS_DATA", IPLAnalyserException.ExceptionType.INCORRECT_FILE_DATA);
         }
 
-        Comparator<IPLAnalyzerCSV> codecomparator=(p1,p2)-> new Integer((p1.fours*4+p1.sixes*6) < (p2.fours*4+p2.sixes*6)?1:-1);
-        Collections.sort(listValue,codecomparator);
+        Comparator<IPLAnalyzerCSV> codeComparator=(p1,p2)-> new Integer((p1.fours*4+p1.sixes*6) < (p2.fours*4+p2.sixes*6)?1:-1);
+        Collections.sort(listValue,codeComparator);
         System.out.println(listValue);
         System.out.println(listValue.size());
         return listValue;
     }
+
+    public List sortingStrikeRateBYFoursANDSixes() throws IPLAnalyserException {
+        if(listValue == null || listValue.size() == 0) {
+            throw new IPLAnalyserException("NO_CENSUS_DATA", IPLAnalyserException.ExceptionType.INCORRECT_FILE_DATA);
+        }
+
+        Comparator<IPLAnalyzerCSV> codeComparator=(p1,p2)-> new Integer((p1.fours*4+p1.sixes*6) < (p2.fours*4+p2.sixes*6)?1:-1);
+        List sortedList = listValue.stream().sorted(Comparator.comparing(IPLAnalyzerCSV::getStrikeRate).reversed()).collect(Collectors.toList());
+
+
+        Collections.sort(sortedList,codeComparator);
+        System.out.println(listValue.size());
+        return sortedList;
+    }
+
 }

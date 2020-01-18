@@ -100,6 +100,10 @@ public class IPLAnalyzerCSV {
     }
 
     public int getSixes() {
+
         return sixes;
     }
+
+
+
 }

@@ -38,7 +38,17 @@ private  String IPL_FACT_SHEET_RUNS_PATH="./src/test/resources/IPL2019Runs.csv";
     public void whenGivenSortedFoursAndSixes_ShouldReturnHighestNumberOfFOrsAndSixes() throws IPLAnalyserException {
         IPLAnalyzer iplAnalyzer=new IPLAnalyzer();
         iplAnalyzer.loadIPLData(IPL_FACT_SHEET_RUNS_PATH);
-        List<IPLAnalyzerCSV> iplAnalyzerCSVList=iplAnalyzer.sortingIPLDataBYFoursANDSixex();
+        List<IPLAnalyzerCSV> iplAnalyzerCSVList=iplAnalyzer.sortingIPLDataBYFoursANDSixes();
         Assert.assertEquals("Andre Russell",iplAnalyzerCSVList.get(0).player);
     }
+
+    @Test
+    public void whenGivenSortedFoursAndSixesAndStrikeRate_ShouldReturnHighestNumberOfFOrsAndSixes() throws IPLAnalyserException {
+        IPLAnalyzer iplAnalyzer=new IPLAnalyzer();
+        iplAnalyzer.loadIPLData(IPL_FACT_SHEET_RUNS_PATH);
+        List<IPLAnalyzerCSV> iplAnalyzerCSVList=iplAnalyzer.sortingStrikeRateBYFoursANDSixes();
+        Assert.assertEquals("Andre Russell",iplAnalyzerCSVList.get(0).player);
+    }
+
+
 }
