@@ -24,7 +24,7 @@ public class IPLAnalyzer {
                 return playerList;
         } catch (IOException e) {
             throw new IPLAnalyserException(e.getMessage(),
-                    IPLAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
+                    IPLAnalyserException.ExceptionType.IPL_FILE_PROBLEM);
         } catch (CSVBuilderException e) {
                 e.printStackTrace();
             }
