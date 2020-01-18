@@ -15,20 +15,21 @@ public class IPLAnalyzer {
 
     List<IPLAnalyzerCSV> listValue=new ArrayList<>();
 
-    public int loadIPLData(String csvFilePath) throws IPLAnalyserException {
+    public List loadIPLData(String csvFilePath) throws IPLAnalyserException {
             try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))){
                 ICSVBuilder icsvBuilder = CSVBuilderFactory.createCSVBuilder();
                 List playerList= icsvBuilder.getCSVList(reader, IPLAnalyzerCSV.class);
 
                 playerList.stream().filter(CensusData -> listValue.add((IPLAnalyzerCSV) CensusData)).collect(Collectors.toList());                //Iterator<IPLAnalyzerCSV> IPLCSVIterator = new OpenCSVBuilder().getCsvFileIterable(reader,IPLAnalyzerCSV.class);
-                return playerList.size();
+                return playerList;
         } catch (IOException e) {
             throw new IPLAnalyserException(e.getMessage(),
                     IPLAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
         } catch (CSVBuilderException e) {
                 e.printStackTrace();
             }
-        return 0;
+
+        return null;
     }
 
 
@@ -70,8 +71,6 @@ public class IPLAnalyzer {
 
         Comparator<IPLAnalyzerCSV> codeComparator=(p1,p2)-> new Integer((p1.fours*4+p1.sixes*6) < (p2.fours*4+p2.sixes*6)?1:-1);
         List sortedList = listValue.stream().sorted(Comparator.comparing(IPLAnalyzerCSV::getStrikeRate).reversed()).collect(Collectors.toList());
-
-
         Collections.sort(sortedList,codeComparator);
         System.out.println(listValue.size());
         return sortedList;
