@@ -3,7 +3,7 @@ package CrickeAnalyzer;
 import com.opencsv.bean.CsvBindByName;
 
 
-public class IPLAnalyzerCSV {
+public class BatsmenAnalyzer {
     @CsvBindByName(column = "POS", required = true)
     public int pos;
 
@@ -47,7 +47,7 @@ public class IPLAnalyzerCSV {
     public int sixes;
 
 
-    public IPLAnalyzerCSV(int pos, String player, int matches, int innings, int notOut, int runs, int highScore, double average, int ballFest, double strikeRate, int century, int halfCentury, int fours, int sixes) {
+    public BatsmenAnalyzer(int pos, String player, int matches, int innings, int notOut, int runs, int highScore, double average, int ballFest, double strikeRate, int century, int halfCentury, int fours, int sixes) {
         this.pos = pos;
         this.player = player;
         this.matches = matches;
@@ -64,12 +64,12 @@ public class IPLAnalyzerCSV {
         this.sixes = sixes;
     }
 
-    public IPLAnalyzerCSV() {
+    public BatsmenAnalyzer() {
     }
 
     @Override
     public String toString() {
-        return "IPLAnalyzerCSV{" +
+        return "BatsmenAnalyzer{" +
                 "pos=" + pos +
                 ", player='" + player + '\'' +
                 ", matches=" + matches +
@@ -88,6 +88,7 @@ public class IPLAnalyzerCSV {
     }
 
     public double getAverage() {
+
         return average;
     }
 
@@ -96,6 +97,7 @@ public class IPLAnalyzerCSV {
     }
 
     public int getFours() {
+
         return fours;
     }
 
@@ -103,7 +105,5 @@ public class IPLAnalyzerCSV {
 
         return sixes;
     }
-
-
 
 }
