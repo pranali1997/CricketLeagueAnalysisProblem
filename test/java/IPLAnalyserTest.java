@@ -62,5 +62,14 @@ private  String IPL_FACT_SHEET_RUNS_PATH="./src/test/resources/IPL2019Runs.csv";
         Assert.assertEquals("MS Dhoni",iplAnalyzerCSVList.get(0).player);
     }
 
+    @Test
+    public void whenGivenSortedAverageAndRuns_ShouldReturnHighestNumberOfAverageWithRuns() throws CricketAnalyserException {
+        CricketAnalyzer iplAnalyzer=new CricketAnalyzer();
+        iplAnalyzer.loadIPLData(IPL_FACT_SHEET_RUNS_PATH);
+        List<BatsmenAnalyzer> iplAnalyzerCSVList=iplAnalyzer.getTopRecords(SortFields.sortingFields.RUNS_AVERAGE_RATE);
+        System.out.println(iplAnalyzerCSVList);
+        Assert.assertEquals("David Warner",iplAnalyzerCSVList.get(0).player);
+    }
+
 
 }

@@ -6,7 +6,7 @@ import java.util.*;
 public class SortFields {
 
     public enum sortingFields{
-        AVERAGE_RATE,STRIKE_RATE, FOUR_SIX_RATE,FOUR_SIX_STRIKE_RATE,AVERAGE_STRIKE_RATE;
+        AVERAGE_RATE,STRIKE_RATE, FOUR_SIX_RATE,FOUR_SIX_STRIKE_RATE,AVERAGE_STRIKE_RATE,RUNS_AVERAGE_RATE,RUN_RATE;
     }
 
     HashMap<sortingFields,Comparator<BatsmenAnalyzer>> compareHashMap =new HashMap<>();
@@ -26,6 +26,10 @@ public class SortFields {
         Comparator<BatsmenAnalyzer> codeStrikeComparator=(data1,data2)->((int) (data1.strikeRate-data2.strikeRate));
         codeComparator.thenComparing(codeStrikeComparator);
         compareHashMap.put(SortFields.sortingFields.AVERAGE_STRIKE_RATE,codeAvgComparator);
+
+        Comparator<BatsmenAnalyzer> codeRunsComparator=(data1,data2)->((int) (data1.runs-data2.runs));
+        codeComparator.thenComparing(codeAvgComparator);
+        compareHashMap.put(SortFields.sortingFields.RUNS_AVERAGE_RATE,codeRunsComparator);
 
         Comparator comparator= compareHashMap.get(sortingFields);
         return comparator;
