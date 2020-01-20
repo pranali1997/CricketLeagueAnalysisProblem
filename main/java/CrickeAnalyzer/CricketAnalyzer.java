@@ -34,12 +34,11 @@ public class CricketAnalyzer {
 
     public List<BatsmenAnalyzer> getTopRecords(SortFields.sortingFields sortFields) {
         Comparator<BatsmenAnalyzer> comparator=new SortFields().getField(sortFields);
-        ArrayList c= (ArrayList) listValue.stream()
+        ArrayList arrayListValue= (ArrayList) listValue.stream()
                 .sorted(comparator)
                 .collect(Collectors.toList());
-        Collections.reverse(c);
-        System.out.println(c);
-        return c;
+        Collections.reverse(arrayListValue);
+        return arrayListValue;
     }
 
 }

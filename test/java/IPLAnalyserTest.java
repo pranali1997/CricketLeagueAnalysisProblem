@@ -49,7 +49,17 @@ private  String IPL_FACT_SHEET_RUNS_PATH="./src/test/resources/IPL2019Runs.csv";
         CricketAnalyzer iplAnalyzer=new CricketAnalyzer();
         iplAnalyzer.loadIPLData(IPL_FACT_SHEET_RUNS_PATH);
         List<BatsmenAnalyzer> iplAnalyzerCSVList=iplAnalyzer.getTopRecords(SortFields.sortingFields.FOUR_SIX_STRIKE_RATE);
+        System.out.println(iplAnalyzerCSVList);
         Assert.assertEquals("Andre Russell",iplAnalyzerCSVList.get(0).player);
+    }
+
+    @Test
+    public void whenGivenSortedAverageAndStrikeRate_ShouldReturnHighestNumberOfAverageWithStrikeRate() throws CricketAnalyserException {
+        CricketAnalyzer iplAnalyzer=new CricketAnalyzer();
+        iplAnalyzer.loadIPLData(IPL_FACT_SHEET_RUNS_PATH);
+        List<BatsmenAnalyzer> iplAnalyzerCSVList=iplAnalyzer.getTopRecords(SortFields.sortingFields.AVERAGE_STRIKE_RATE);
+        System.out.println(iplAnalyzerCSVList);
+        Assert.assertEquals("MS Dhoni",iplAnalyzerCSVList.get(0).player);
     }
 
 
