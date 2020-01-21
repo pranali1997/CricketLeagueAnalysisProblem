@@ -10,13 +10,13 @@ public class CricketAnalyzer {
 
     public int loadIPLBatsmanData(String csvFilePath) throws CricketAnalyserException {
 
-        this.cricketAnalyseList = new BatsmanLoader().loadIPLData(csvFilePath);
+        this.cricketAnalyseList = new CricketLoader().loadIPLData(csvFilePath);
         return cricketAnalyseList.size();
     }
 
     public int loadIPLBowlerData(String csvFilePath) throws CricketAnalyserException {
 
-        cricketAnalyseList = new BowlerLoader().loadIPLBowlerData(csvFilePath);
+        cricketAnalyseList = new CricketLoader().loadIPLBowlerData(csvFilePath);
         return cricketAnalyseList.size();
     }
 
