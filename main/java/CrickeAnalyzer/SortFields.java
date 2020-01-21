@@ -1,6 +1,5 @@
 package CrickeAnalyzer;
 
-
 import java.util.*;
 
 public class SortFields {
@@ -9,29 +8,33 @@ public class SortFields {
         AVERAGE_RATE,STRIKE_RATE, FOUR_SIX_RATE,FOUR_SIX_STRIKE_RATE,AVERAGE_STRIKE_RATE,RUNS_AVERAGE_RATE,RUN_RATE;
     }
 
-    HashMap<sortingFields,Comparator<BatsmenAnalyzer>> compareHashMap =new HashMap<>();
+    HashMap<sortingFields,Comparator<BatsmenAnalyzer>> compareBatsmanHashMap =new HashMap<>();
+    HashMap<sortingFields,Comparator<BowlerAnalyzer>>  compareBowlerHashMap=new HashMap<>();
+
 
     public Comparator getField(sortingFields sortingFields){
 
-        compareHashMap.put(sortingFields.STRIKE_RATE,(data1, data2)-> (int) (data1.strikeRate-data2.strikeRate));
+        compareBatsmanHashMap.put(sortingFields.STRIKE_RATE,(data1, data2)-> (int) (data1.strikeRate-data2.strikeRate));
 
-        compareHashMap.put(sortingFields.AVERAGE_RATE,(data1, data2)-> (int) (data1.average-data2.average));
+        compareBatsmanHashMap.put(sortingFields.AVERAGE_RATE,(data1, data2)-> (int) (data1.average-data2.average));
 
         Comparator<BatsmenAnalyzer> codeComparator=(f1, f2)-> ((f1.fours*4+f1.sixes*6) < (f2.fours*4+f2.sixes*6)?-1:1);
-        compareHashMap.put(sortingFields.FOUR_SIX_RATE,codeComparator);
+        compareBatsmanHashMap.put(sortingFields.FOUR_SIX_RATE,codeComparator);
         codeComparator=codeComparator.thenComparing((data1,data2)-> (int) (data1.strikeRate-data2.strikeRate));
-        compareHashMap.put(sortingFields.FOUR_SIX_STRIKE_RATE,codeComparator);
+        compareBatsmanHashMap.put(sortingFields.FOUR_SIX_STRIKE_RATE,codeComparator);
 
         Comparator<BatsmenAnalyzer> codeAvgComparator=(data1,data2)->((int) (data1.average-data2.average));
         Comparator<BatsmenAnalyzer> codeStrikeComparator=(data1,data2)->((int) (data1.strikeRate-data2.strikeRate));
         codeComparator.thenComparing(codeStrikeComparator);
-        compareHashMap.put(SortFields.sortingFields.AVERAGE_STRIKE_RATE,codeAvgComparator);
+        compareBatsmanHashMap.put(SortFields.sortingFields.AVERAGE_STRIKE_RATE,codeAvgComparator);
 
         Comparator<BatsmenAnalyzer> codeRunsComparator=(data1,data2)->((int) (data1.runs-data2.runs));
         codeComparator.thenComparing(codeAvgComparator);
-        compareHashMap.put(SortFields.sortingFields.RUNS_AVERAGE_RATE,codeRunsComparator);
+        compareBatsmanHashMap.put(SortFields.sortingFields.RUNS_AVERAGE_RATE,codeRunsComparator);
 
-        Comparator comparator= compareHashMap.get(sortingFields);
+        Comparator<BowlerAnalyzer> codeBowlingComparator=(data1,data2)-> (int) (data1.average-data2.average);
+        compareBowlerHashMap.put(SortFields.sortingFields.AVERAGE_RATE,codeBowlingComparator);
+        Comparator comparator= compareBowlerHashMap.get(sortingFields);
         return comparator;
     }
 }

@@ -21,7 +21,7 @@ public class CricketAnalyzer {
         return bowlerListValue;
     }
 
-    public List<BatsmenAnalyzer> getTopRecords(SortFields.sortingFields sortFields) {
+    public List<BatsmenAnalyzer> getTopBatsmenRecords(SortFields.sortingFields sortFields) {
         Comparator<BatsmenAnalyzer> comparator=new SortFields().getField(sortFields);
         ArrayList arrayListValue= (ArrayList) batsmanListValue.stream()
                 .sorted(comparator)
@@ -30,5 +30,14 @@ public class CricketAnalyzer {
         return arrayListValue;
     }
 
+
+    public List<BowlerAnalyzer> getTopBowlersRecords(SortFields.sortingFields sortFields) {
+        Comparator<BowlerAnalyzer> comparator=new SortFields().getField(sortFields);
+        ArrayList arrayListValue= (ArrayList) bowlerListValue.stream()
+                .sorted(comparator)
+                .collect(Collectors.toList());
+        Collections.reverse(arrayListValue);
+        return arrayListValue;
+    }
 
 }
