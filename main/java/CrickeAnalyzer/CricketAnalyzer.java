@@ -5,38 +5,37 @@ import java.util.stream.Collectors;
 
 public class CricketAnalyzer {
 
-    List<BatsmenAnalyzerDAO> batsmanListValue =new ArrayList<>();
-    List<BowlerAnalyzer> bowlerListValue=new ArrayList<>();
+    List<CricketAnalyzerDAO> cricketAnalyseList = new ArrayList<>();
 
 
     public int loadIPLBatsmanData(String csvFilePath) throws CricketAnalyserException {
 
-        this.batsmanListValue =new BatsmanLoader().loadIPLData(csvFilePath);
-        return batsmanListValue.size();
+        this.cricketAnalyseList = new BatsmanLoader().loadIPLData(csvFilePath);
+        return cricketAnalyseList.size();
     }
 
     public int loadIPLBowlerData(String csvFilePath) throws CricketAnalyserException {
 
-        bowlerListValue=new BowlerLoader().loadIPLBowlerData(csvFilePath);
-        return bowlerListValue.size();
+        cricketAnalyseList = new BowlerLoader().loadIPLBowlerData(csvFilePath);
+        return cricketAnalyseList.size();
     }
 
 
-    public List<BatsmenAnalyzerDAO> getTopBatsmenRecords(SortFields.sortingFields sortFields) {
-        Comparator<BatsmenAnalyzerDAO> comparator=new SortFields().getFieldBatsman(sortFields);
-        batsmanListValue = batsmanListValue.stream()
+    public List<CricketAnalyzerDAO> getTopBatsmenRecords(SortFields.sortingFields sortFields) {
+        Comparator<CricketAnalyzerDAO> comparator = new SortFields().getFieldBatsman(sortFields);
+        cricketAnalyseList = cricketAnalyseList.stream()
                 .sorted(comparator.reversed())
                 .collect(Collectors.toList());
-        return this.batsmanListValue;
+        return this.cricketAnalyseList;
     }
 
-    public List<BowlerAnalyzer> getTopBowlersRecords(SortFields.sortingFields sortFields) {
-        Comparator<BowlerAnalyzer> comparator=new SortFields().getFieldBowler(sortFields);
-        ArrayList arrayListValue= (ArrayList) bowlerListValue.stream()
+    public List<CricketAnalyzerDAO> getTopBowlersRecords(SortFields.sortingFields sortFields) {
+        Comparator<CricketAnalyzerDAO> comparator = new SortFields().getFieldBowler(sortFields);
+        cricketAnalyseList = cricketAnalyseList.stream()
                 .sorted(comparator)
                 .collect(Collectors.toList());
-        Collections.reverse(arrayListValue);
-        return arrayListValue;
+        Collections.reverse(cricketAnalyseList);
+        return this.cricketAnalyseList;
     }
 
 

@@ -9,24 +9,23 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 public class BowlerLoader {
 
-    List<BowlerAnalyzer> bowlerListValue=new ArrayList<>();
+    List<CricketAnalyzerDAO> bowlerListValue=new ArrayList<>();
 
-    public List<BowlerAnalyzer> loadIPLBowlerData(String csvFilePath) throws CricketAnalyserException {
+    public <E> List<CricketAnalyzerDAO> loadIPLBowlerData(String csvFilePath) throws CricketAnalyserException {
 
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))){
             ICSVBuilder icsvBuilder = CSVBuilderFactory.createCSVBuilder();
-            List playerList= icsvBuilder.getCSVList(reader, BowlerAnalyzer.class);
+            List<E> playerList1= icsvBuilder.getCSVList(reader, BowlerAnalyzer.class);
+            StreamSupport.stream(playerList1.spliterator(),false)
+                    .map(BowlerAnalyzer.class::cast)
+                    .forEach(cricketCSV -> bowlerListValue.add(new CricketAnalyzerDAO(cricketCSV)));
 
-            playerList.stream().filter(CensusData -> bowlerListValue.add((BowlerAnalyzer)CensusData)).collect(Collectors.toList());
-
-            return playerList;
+            return bowlerListValue;
         } catch (IOException e) {
             throw new CricketAnalyserException(e.getMessage(),
                     CricketAnalyserException.ExceptionType.IPL_FILE_PROBLEM);
@@ -35,6 +34,5 @@ public class BowlerLoader {
         }
         return null;
     }
-
-
 }
+

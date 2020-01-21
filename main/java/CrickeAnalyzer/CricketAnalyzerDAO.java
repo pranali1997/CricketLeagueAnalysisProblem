@@ -1,12 +1,12 @@
 package CrickeAnalyzer;
 
-public class BatsmenAnalyzerDAO {
+public class CricketAnalyzerDAO {
 
-   public int pos;
+    public int pos;
     public String player;
     public int matches;
     public int innings;
-   public int notOut;
+    public int notOut;
     public int runs;
     public int highScore;
     public double average;
@@ -16,8 +16,15 @@ public class BatsmenAnalyzerDAO {
     public int halfCentury;
     public int fours;
     public int sixes;
+    public double overs;
+    public int wickets;
+    public int bestBowlingInn;
+    public double economicRate;
+    public int fourWickets;
+    public int fiveWickets;
 
-    public BatsmenAnalyzerDAO(BatsmenAnalyzer batsmenAnalyzer) {
+
+    public CricketAnalyzerDAO(BatsmenAnalyzer batsmenAnalyzer) {
         this.pos = batsmenAnalyzer.pos;
         this.player = batsmenAnalyzer.player;
         this.matches = batsmenAnalyzer.matches;
@@ -34,9 +41,25 @@ public class BatsmenAnalyzerDAO {
         this.sixes = batsmenAnalyzer.sixes;
     }
 
+    public CricketAnalyzerDAO(BowlerAnalyzer bowlerAnalyzer) {
+        this.pos = bowlerAnalyzer.pos;
+        this.player = bowlerAnalyzer.player;
+        this.matches = bowlerAnalyzer.matches;
+        this.innings = bowlerAnalyzer.innings;
+        this.runs = bowlerAnalyzer.runs;
+        this.average = bowlerAnalyzer.average;
+        this.strikeRate = bowlerAnalyzer.strikeRate;
+        this.overs = bowlerAnalyzer.overs;
+        this.wickets = bowlerAnalyzer.wickets;
+        this.bestBowlingInn = bowlerAnalyzer.bestBowlingInn;
+        this.economicRate = bowlerAnalyzer.economicRate;
+        this.fourWickets = bowlerAnalyzer.fourWickets;
+        this.fiveWickets = bowlerAnalyzer.fiveWickets;
+    }
+
     @Override
     public String toString() {
-        return "BatsmenAnalyzerDAO{" +
+        return "CricketAnalyzerDAO{" +
                 "pos=" + pos +
                 ", player='" + player + '\'' +
                 ", matches=" + matches +
@@ -51,6 +74,12 @@ public class BatsmenAnalyzerDAO {
                 ", halfCentury=" + halfCentury +
                 ", fours=" + fours +
                 ", sixes=" + sixes +
+                ", overs=" + overs +
+                ", wickets=" + wickets +
+                ", bestBowlingInn=" + bestBowlingInn +
+                ", economicRate=" + economicRate +
+                ", fourWickets=" + fourWickets +
+                ", fiveWickets=" + fiveWickets +
                 '}';
     }
 }
