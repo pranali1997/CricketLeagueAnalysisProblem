@@ -11,20 +11,23 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 public class BatsmanLoader {
 
-    List<BatsmenAnalyzer> listValue=new ArrayList<>();
+    List<BatsmenAnalyzerDAO> listValue=new ArrayList<>();
 
-    public List<BatsmenAnalyzer> loadIPLData(String csvFilePath) throws CricketAnalyserException {
+    public<E> List<BatsmenAnalyzerDAO> loadIPLData(String csvFilePath) throws CricketAnalyserException {
 
      try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))){
         ICSVBuilder icsvBuilder = CSVBuilderFactory.createCSVBuilder();
-        List playerList= icsvBuilder.getCSVList(reader, BatsmenAnalyzer.class);
+        List<E> playerList1= icsvBuilder.getCSVList(reader, BatsmenAnalyzer.class);
+         StreamSupport.stream(playerList1.spliterator(),false)
+                 .map(BatsmenAnalyzer.class::cast)
+                 .forEach(cricketCSV -> listValue.add(new BatsmenAnalyzerDAO(cricketCSV)));
+        //playerList.stream().filter(CensusData -> listValue.add((BatsmenAnalyzerDAO) CensusData)).collect(Collectors.toList());
 
-        playerList.stream().filter(CensusData -> listValue.add((BatsmenAnalyzer) CensusData)).collect(Collectors.toList());
-
-         return playerList;
+         return listValue;
     } catch (IOException e) {
         throw new CricketAnalyserException(e.getMessage(),
                 CricketAnalyserException.ExceptionType.IPL_FILE_PROBLEM);
