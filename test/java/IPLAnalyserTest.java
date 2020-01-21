@@ -80,4 +80,15 @@ private String IPL_FACT_SHEET_WKTS_PATH="./src/test/resources/IPL2019Wickets.csv
         System.out.println(iplAnalyzerCSVList);
         Assert.assertEquals("Krishnappa Gowtham",iplAnalyzerCSVList.get(0).player);
     }
+
+    @Test
+    public void whenGivenSoredBowlersStrikeRate_ShouldReturnSortedStrikeRateDataInDEscendingOrder() throws CricketAnalyserException {
+        CricketAnalyzer iplAnalyzer=new CricketAnalyzer();
+        iplAnalyzer.loadIPLBowlerData(IPL_FACT_SHEET_WKTS_PATH);
+        List<CricketAnalyzerDAO> iplCSVList=iplAnalyzer.getTopBowlersRecords(SortFields.sortingFields.STRIKE_RATE);
+        System.out.println(iplCSVList);
+        Assert.assertEquals("Krishnappa Gowtham",iplCSVList.get(0).player);
+    }
+
+
 }

@@ -38,6 +38,9 @@ public class SortFields {
         Comparator<CricketAnalyzerDAO> codeBowlingComparator = (data1, data2) -> (int) (data1.average - data2.average);
         compareBatsmanHashMap.put(SortFields.sortingFields.AVERAGE_RATE, codeBowlingComparator);
 
+        compareBatsmanHashMap.put(SortFields.sortingFields.STRIKE_RATE, (data1, data2) -> (int) (data1.strikeRate - data2.strikeRate));
+
+
         Comparator comparator = compareBatsmanHashMap.get(sortingFields);
         return comparator;
     }
