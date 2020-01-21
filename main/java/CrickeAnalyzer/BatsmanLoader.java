@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CricketAnalyzerLoader {
+public class BatsmanAdapter {
 
     List<BatsmenAnalyzer> listValue=new ArrayList<>();
 
@@ -22,7 +22,7 @@ public class CricketAnalyzerLoader {
         ICSVBuilder icsvBuilder = CSVBuilderFactory.createCSVBuilder();
         List playerList= icsvBuilder.getCSVList(reader, BatsmenAnalyzer.class);
 
-        playerList.stream().filter(CensusData -> listValue.add((BatsmenAnalyzer) CensusData)).collect(Collectors.toList());                //Iterator<BatsmenAnalyzer> IPLCSVIterator = new OpenCSVBuilder().getCsvFileIterable(reader,BatsmenAnalyzer.class);
+        playerList.stream().filter(CensusData -> listValue.add((BatsmenAnalyzer) CensusData)).collect(Collectors.toList());
 
          return playerList;
     } catch (IOException e) {

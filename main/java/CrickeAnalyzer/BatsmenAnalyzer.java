@@ -87,23 +87,4 @@ public class BatsmenAnalyzer {
                 '}';
     }
 
-    public double getAverage() {
-
-        return average;
-    }
-
-    public double getStrikeRate() {
-        return strikeRate;
-    }
-
-    public int getFours() {
-
-        return fours;
-    }
-
-    public int getSixes() {
-
-        return sixes;
-    }
-
 }
