@@ -15,13 +15,14 @@ public class CricketAnalyzer {
         return batsmanListValue.size();
     }
 
-    public List<BowlerAnalyzer> loadIPLBowlerData(String csvFilePath) throws CricketAnalyserException {
+    public int loadIPLBowlerData(String csvFilePath) throws CricketAnalyserException {
 
         bowlerListValue=new BowlerLoader().loadIPLBowlerData(csvFilePath);
-        return bowlerListValue;
+        return bowlerListValue.size();
     }
 
-    public List getTopBatsmenRecords(SortFields.sortingFields sortFields) {
+
+    public List<BatsmenAnalyzerDAO> getTopBatsmenRecords(SortFields.sortingFields sortFields) {
         Comparator<BatsmenAnalyzerDAO> comparator=new SortFields().getFieldBatsman(sortFields);
         batsmanListValue = batsmanListValue.stream()
                 .sorted(comparator.reversed())
@@ -29,14 +30,14 @@ public class CricketAnalyzer {
         return this.batsmanListValue;
     }
 
-
     public List<BowlerAnalyzer> getTopBowlersRecords(SortFields.sortingFields sortFields) {
-        Comparator<BowlerAnalyzer> comparator=new SortFields().getFieldBatsman(sortFields);
+        Comparator<BowlerAnalyzer> comparator=new SortFields().getFieldBowler(sortFields);
         ArrayList arrayListValue= (ArrayList) bowlerListValue.stream()
                 .sorted(comparator)
                 .collect(Collectors.toList());
         Collections.reverse(arrayListValue);
         return arrayListValue;
     }
+
 
 }

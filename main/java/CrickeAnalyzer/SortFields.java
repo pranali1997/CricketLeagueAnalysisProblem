@@ -31,7 +31,6 @@ public class SortFields {
         Comparator<BatsmenAnalyzerDAO> codeRunsComparator=(data1,data2)->((int) (data1.runs-data2.runs));
         codeComparator.thenComparing(codeAvgComparator);
         compareBatsmanHashMap.put(SortFields.sortingFields.RUNS_AVERAGE_RATE,codeRunsComparator);
-
         Comparator comparator= compareBatsmanHashMap.get(sortingFields);
         return comparator;
     }

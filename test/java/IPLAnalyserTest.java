@@ -68,8 +68,8 @@ private String IPL_FACT_SHEET_WKTS_PATH="./src/test/resources/IPL2019Wickets.csv
     @Test
     public void whenGivenIPLAnalyzerDataForBowler_ShouldReturnCorrectRecords() throws CricketAnalyserException {
         CricketAnalyzer iplAnalyzer = new CricketAnalyzer();
-        List numberOfRecords=iplAnalyzer.loadIPLBowlerData(IPL_FACT_SHEET_WKTS_PATH);
-        Assert.assertEquals(99,numberOfRecords.size());
+        int numberOfRecords=iplAnalyzer.loadIPLBowlerData(IPL_FACT_SHEET_WKTS_PATH);
+        Assert.assertEquals(99,numberOfRecords);
     }
 
     @Test
@@ -80,5 +80,4 @@ private String IPL_FACT_SHEET_WKTS_PATH="./src/test/resources/IPL2019Wickets.csv
         System.out.println(iplAnalyzerCSVList);
         Assert.assertEquals("Krishnappa Gowtham",iplAnalyzerCSVList.get(0).player);
     }
-
 }
