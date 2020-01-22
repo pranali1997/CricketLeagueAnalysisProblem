@@ -87,5 +87,12 @@ private String IPL_FACT_SHEET_WKTS_PATH="./src/test/resources/IPL2019Wickets.csv
         Assert.assertEquals("Krishnappa Gowtham",iplCSVList.get(0).player);
     }
 
+    @Test
+    public void whenGivenSoredBowlersEconpomyRate_ShouldReturnSortedEconomyRateDataInDescendingOrder() throws CricketAnalyserException {
+        CricketAnalyzer iplAnalyzer=new CricketAnalyzer();
+        iplAnalyzer.loadCricketAnalyzerData(IPL_FACT_SHEET_WKTS_PATH);
+        List<CricketAnalyzerDAO> iplCSVList=iplAnalyzer.getTopBatsmenRecords(SortFields.sortingFields.ECONOMY_RATE);
+        Assert.assertEquals("Ben Cutting",iplCSVList.get(0).player);
+    }
 
 }
