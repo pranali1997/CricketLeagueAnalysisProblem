@@ -21,7 +21,7 @@ public class CricketAnalyzer {
     }
 
     public List<CricketAnalyzerDAO> getTopBatsmenRecords(SortFields.sortingFields sortFields) {
-        Comparator<CricketAnalyzerDAO> comparator = new SortFields().getFieldBatsman(sortFields);
+        Comparator<CricketAnalyzerDAO> comparator = new SortFields().getFieldCricketer(sortFields);
         cricketAnalyseList = cricketAnalyseList.stream()
                 .sorted(comparator.reversed())
                 .collect(Collectors.toList());

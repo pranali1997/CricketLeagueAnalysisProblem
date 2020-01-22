@@ -95,4 +95,13 @@ private String IPL_FACT_SHEET_WKTS_PATH="./src/test/resources/IPL2019Wickets.csv
         Assert.assertEquals("Ben Cutting",iplCSVList.get(0).player);
     }
 
+    @Test
+    public void whenGivenSoredBowlersStrikeRateFourWicketsAndFiveWicketsRate_ShouldReturnSortedStrikeRateFourWicketsAndFiveWicketsRateDataInDescendingOrder() throws CricketAnalyserException {
+        CricketAnalyzer iplAnalyzer=new CricketAnalyzer();
+        iplAnalyzer.loadCricketAnalyzerData(IPL_FACT_SHEET_WKTS_PATH);
+        List<CricketAnalyzerDAO> iplCSVList=iplAnalyzer.getTopBatsmenRecords(SortFields.sortingFields.FOUR_WICKETS_AND_SIX_WICKETS);
+        System.out.println(iplCSVList);
+        Assert.assertEquals("Imran Tahir",iplCSVList.get(0).player);
+    }
+
 }
