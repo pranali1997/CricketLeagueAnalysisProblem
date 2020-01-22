@@ -29,14 +29,4 @@ public class CricketAnalyzer {
         return this.cricketAnalyseList;
     }
 
-    public List<CricketAnalyzerDAO> getTopBowlersRecords(SortFields.sortingFields sortFields) {
-        Comparator<CricketAnalyzerDAO> comparator = new SortFields().getFieldBowler(sortFields);
-        cricketAnalyseList = cricketAnalyseList.stream()
-                .sorted(comparator)
-                .collect(Collectors.toList());
-        Collections.reverse(cricketAnalyseList);
-        return this.cricketAnalyseList;
-    }
-
-
 }
