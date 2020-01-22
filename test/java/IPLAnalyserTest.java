@@ -21,6 +21,7 @@ private String IPL_FACT_SHEET_WKTS_PATH="./src/test/resources/IPL2019Wickets.csv
         CricketAnalyzer iplAnalyzer = new CricketAnalyzer();
         iplAnalyzer.loadCricketAnalyzerData(IPL_FACT_SHEET_RUNS_PATH);
         List<CricketAnalyzerDAO> topBatsmenRecords = iplAnalyzer.getTopBatsmenRecords(SortFields.sortingFields.AVERAGE_RATE);
+        System.out.println(topBatsmenRecords);
         Assert.assertEquals("MS Dhoni",topBatsmenRecords.get(0).player);
     }
 
@@ -103,5 +104,15 @@ private String IPL_FACT_SHEET_WKTS_PATH="./src/test/resources/IPL2019Wickets.csv
         System.out.println(iplCSVList);
         Assert.assertEquals("Krishnappa Gowtham",iplCSVList.get(0).player);
     }
+    @Test
+    public void whenGivenSortedAverageAndStrikeRateOfBowler_ShouldReturnHighestNumberOfAverageWithStrikeRate() throws CricketAnalyserException {
+        CricketAnalyzer iplAnalyzer=new CricketAnalyzer();
+        iplAnalyzer.loadCricketAnalyzerData(IPL_FACT_SHEET_WKTS_PATH);
+        List<CricketAnalyzerDAO> iplCSVList=iplAnalyzer.getTopBatsmenRecords(SortFields.sortingFields.AVERAGE_STRIKE_RATE);
+        System.out.println(iplCSVList);
+        Assert.assertEquals("Krishnappa Gowtham",iplCSVList.get(0).player);
+    }
 
 }
+
+

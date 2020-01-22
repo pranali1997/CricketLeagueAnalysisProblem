@@ -14,7 +14,7 @@ public class CricketAnalyzer {
             this.cricketAnalyseList = new CricketLoader().loadIPLData(csvFilePath);
         }
         if(csvFilePath=="./src/test/resources/IPL2019Wickets.csv") {
-            cricketAnalyseList = new CricketLoader().loadIPLData(csvFilePath);
+            this.cricketAnalyseList = new CricketLoader().loadIPLData(csvFilePath);
         }
         return cricketAnalyseList.size();
 
