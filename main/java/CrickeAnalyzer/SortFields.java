@@ -36,16 +36,4 @@ public class SortFields {
         return comparator;
     }
 
-    public Comparator getFieldBowler(sortingFields sortingFields) {
-
-        Comparator<CricketAnalyzerDAO> codeBowlingComparator = (data1, data2) -> (int) (data1.average - data2.average);
-        compareBatsmanHashMap.put(SortFields.sortingFields.AVERAGE_RATE, codeBowlingComparator);
-
-        compareBatsmanHashMap.put(SortFields.sortingFields.STRIKE_RATE, (data1, data2) -> (int) (data1.strikeRate - data2.strikeRate));
-
-        compareBatsmanHashMap.put(SortFields.sortingFields.ECONOMY_RATE,(data1,data2)-> (data1.economicRate < data2.economicRate)?-1 : 1);
-
-        Comparator comparator = compareBatsmanHashMap.get(sortingFields);
-        return comparator;
-    }
 }
