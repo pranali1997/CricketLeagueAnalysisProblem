@@ -80,7 +80,7 @@ private String IPL_FACT_SHEET_WKTS_PATH="./src/test/resources/IPL2019Wickets.csv
     }
 
     @Test
-    public void whenGivenSoredBowlersStrikeRate_ShouldReturnSortedStrikeRateDataInDEscendingOrder() throws CricketAnalyserException {
+    public void whenGivenSoredBowlersStrikeRate_ShouldReturnSortedStrikeRateDataInDescendingOrder() throws CricketAnalyserException {
         CricketAnalyzer iplAnalyzer=new CricketAnalyzer();
         iplAnalyzer.loadCricketAnalyzerData(IPL_FACT_SHEET_WKTS_PATH);
         List<CricketAnalyzerDAO> iplCSVList=iplAnalyzer.getTopBatsmenRecords(SortFields.sortingFields.STRIKE_RATE);

@@ -12,7 +12,7 @@ public class SortFields {
 
     public Comparator getFieldCricketer(sortingFields sortingFields) {
 
-        compareBatsmanHashMap.put(sortingFields.STRIKE_RATE, (data1, data2) -> (data1.strikeRate < data2.strikeRate)? 1 : -1);
+        compareBatsmanHashMap.put(sortingFields.STRIKE_RATE, (data1, data2) -> (data1.strikeRate < data2.strikeRate)? -1 : 1);
 
         compareBatsmanHashMap.put(sortingFields.AVERAGE_RATE, (data1, data2) -> (int) (data1.average - data2.average));
 
@@ -22,6 +22,7 @@ public class SortFields {
         compareBatsmanHashMap.put(sortingFields.FOUR_SIX_STRIKE_RATE, codeComparator);
 
         Comparator<CricketAnalyzerDAO> codeAvgComparator = (data1, data2) -> ((int) (data1.average - data2.average));
+
         Comparator<CricketAnalyzerDAO> codeStrikeComparator = (data1, data2) -> ((int) (data1.strikeRate - data2.strikeRate));
         codeComparator.thenComparing(codeStrikeComparator);
         compareBatsmanHashMap.put(SortFields.sortingFields.AVERAGE_STRIKE_RATE, codeAvgComparator);
@@ -35,7 +36,7 @@ public class SortFields {
 
         compareBatsmanHashMap.put(SortFields.sortingFields.FOUR_WICKETS_AND_SIX_WICKETS,(data1, data2)->((data1.fourWickets*4 + data2.fiveWickets*5)-(data1.fourWickets*4 + data2.fiveWickets*5)));
         compareBatsmanHashMap.put(sortingFields.FOUR_WICKETS_AND_SIX_WICKETS_STRIKE,compareBatsmanHashMap.get(SortFields.sortingFields.FOUR_WICKETS_AND_SIX_WICKETS)
-                .thenComparing(compareBatsmanHashMap.get(SortFields.sortingFields.STRIKE_RATE)).reversed());
+                .thenComparing(compareBatsmanHashMap.get(SortFields.sortingFields.STRIKE_RATE)));
 
         Comparator comparator = compareBatsmanHashMap.get(sortingFields);
         return comparator;
