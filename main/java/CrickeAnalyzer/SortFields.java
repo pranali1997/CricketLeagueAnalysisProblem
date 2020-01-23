@@ -5,7 +5,7 @@ import java.util.*;
 public class SortFields {
 
     public enum sortingFields {
-        AVERAGE_RATE, STRIKE_RATE, FOUR_SIX_RATE, FOUR_SIX_STRIKE_RATE, AVERAGE_STRIKE_RATE, RUNS_AVERAGE_RATE, ECONOMY_RATE ,FOUR_WICKETS_AND_SIX_WICKETS,FOUR_WICKETS_AND_SIX_WICKETS_STRIKE, AVERAGE_BOWLER_STRIKE_RATE;
+        AVERAGE_RATE, STRIKE_RATE, FOUR_SIX_RATE, FOUR_SIX_STRIKE_RATE, AVERAGE_STRIKE_RATE, RUNS_AVERAGE_RATE, ECONOMY_RATE ,FOUR_WICKETS_AND_SIX_WICKETS,FOUR_WICKETS_AND_SIX_WICKETS_STRIKE, AVERAGE_WICKET_RATE;
     }
 
     HashMap<sortingFields, Comparator<CricketAnalyzerDAO>> compareBatsmanHashMap = new HashMap<>();
@@ -33,10 +33,16 @@ public class SortFields {
 
         compareBatsmanHashMap.put(SortFields.sortingFields.ECONOMY_RATE,(data1,data2)-> (data1.economicRate  < data2.economicRate)? -1 : 1);
 
+        Comparator<CricketAnalyzerDAO> codeFourFiveWickets=(data1, data2)->((data1.fourWickets*4 + data2.fiveWickets*5)-(data1.fourWickets*4 + data2.fiveWickets*5));
 
         compareBatsmanHashMap.put(SortFields.sortingFields.FOUR_WICKETS_AND_SIX_WICKETS,(data1, data2)->((data1.fourWickets*4 + data2.fiveWickets*5)-(data1.fourWickets*4 + data2.fiveWickets*5)));
         compareBatsmanHashMap.put(sortingFields.FOUR_WICKETS_AND_SIX_WICKETS_STRIKE,compareBatsmanHashMap.get(SortFields.sortingFields.FOUR_WICKETS_AND_SIX_WICKETS)
                 .thenComparing(compareBatsmanHashMap.get(SortFields.sortingFields.STRIKE_RATE)));
+
+        compareBatsmanHashMap.put(SortFields.sortingFields.AVERAGE_RATE,codeAvgComparator);
+        compareBatsmanHashMap.put(SortFields.sortingFields.AVERAGE_WICKET_RATE,compareBatsmanHashMap.get(SortFields.sortingFields.AVERAGE_RATE));
+        codeAvgComparator.thenComparing(codeFourFiveWickets);
+
 
         Comparator comparator = compareBatsmanHashMap.get(sortingFields);
         return comparator;

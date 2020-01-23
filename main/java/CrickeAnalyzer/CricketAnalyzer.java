@@ -22,16 +22,6 @@ public class CricketAnalyzer {
 
         cricketAnalyseList=CricketAnalysisFactory.loadCricketAnalyzerData(cricket,csvFilePath);
         return cricketAnalyseList.size();
-       /* cricketAnalyseList=CricketAnalysisFactory.loadCricketAnalyzerData(cricket,csvFilePath);
-        if(csvFilePath=="./src/test/resources/IPL2019Runs.csv") {
-            this.cricketAnalyseList = new CricketAdapter().loadCricketAnalyzerData(csvFilePath);
-        }
-        if(csvFilePath=="./src/test/resources/IPL2019Wickets.csv") {
-            this.cricketAnalyseList = new CricketAdapter().loadCricketAnalyzerData(csvFilePath);
-        }
-        return cricketAnalyseList.size();
-*/
-
 
     }
 
