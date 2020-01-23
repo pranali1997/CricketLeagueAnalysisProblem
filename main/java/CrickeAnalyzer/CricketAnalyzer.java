@@ -8,19 +8,20 @@ public class CricketAnalyzer {
     public Cricket cricket;
 
     public enum Cricket{
-        BATSMANS,BOWLERS}
+        BATSMANS,BOWLERS,BATBOWLMERGE}
 
 
     public CricketAnalyzer(Cricket cricket) {
         this.cricket = cricket;
     }
 
-    Map<String,CricketAnalyzerDAO> cricketAnalyseMap = null;
+    Map<String,CricketAnalyzerDAO> cricketAnalyseMap = new TreeMap<>();
 
 
     public int loadCricketAnalyzerData(String... csvFilePath) throws CricketAnalyserException {
 
         cricketAnalyseMap =CricketAnalysisFactory.loadCricketAnalyzerData(cricket,csvFilePath);
+        System.out.println(cricketAnalyseMap);
         return cricketAnalyseMap.size();
 
     }
@@ -28,7 +29,7 @@ public class CricketAnalyzer {
     public List<CricketAnalyzerDAO> getTopBatsmenRecords(SortFields.sortingFields sortFields) {
         Comparator<CricketAnalyzerDAO> comparator = new SortFields().getFieldCricketer(sortFields);
         List listSorting = cricketAnalyseMap.values().stream()
-                .sorted(comparator.reversed())
+                .sorted(comparator)
                 .collect(Collectors.toList());
         return listSorting;
     }

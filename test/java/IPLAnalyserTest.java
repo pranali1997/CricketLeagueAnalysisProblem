@@ -119,6 +119,18 @@ private String IPL_FACT_SHEET_WKTS_PATH="./src/test/resources/IPL2019Wickets.csv
         Assert.assertEquals("Imran Tahir",iplCSVList.get(0).player);
     }
 
+
+    @Test
+    public void whenGivenTopOfBothAverage_shouldReturnHighestAverage() throws CricketAnalyserException {
+        CricketAnalyzer iplAnalyzer = new CricketAnalyzer(CricketAnalyzer.Cricket.BATBOWLMERGE);
+        iplAnalyzer.loadCricketAnalyzerData(IPL_FACT_SHEET_RUNS_PATH,IPL_FACT_SHEET_WKTS_PATH);
+        List<CricketAnalyzerDAO> topBatsmenRecords = iplAnalyzer.getTopBatsmenRecords(SortFields.sortingFields.AVERAGE_RATE_BOTH);
+        System.out.println(topBatsmenRecords);
+        System.out.println(topBatsmenRecords.size());
+        Assert.assertEquals("MS Dhoni",topBatsmenRecords.get(0).player);
+        Assert.assertEquals("Harpreet Brar",topBatsmenRecords.get(99).player);
+    }
+
 }
 
 

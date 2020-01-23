@@ -16,9 +16,9 @@ import java.util.stream.StreamSupport;
 
 public abstract class CricketAdapter {
 
-    Map<String,CricketAnalyzerDAO> mapValue =new TreeMap<>();
 
     public<E> Map<String,CricketAnalyzerDAO> loadIPLData(Class<E> CricketCSVClass, String... csvFilePath) throws CricketAnalyserException {
+        Map<String,CricketAnalyzerDAO> mapValue =new TreeMap<>();
 
      try (Reader reader = Files.newBufferedReader(Paths.get(String.valueOf(csvFilePath[0])))){
         ICSVBuilder icsvBuilder = CSVBuilderFactory.createCSVBuilder();
@@ -44,8 +44,6 @@ public abstract class CricketAdapter {
         return mapValue;
     }
 
-
-    public abstract <E> Map<String,CricketAnalyzerDAO> loadIPLData(String... csvFilePath) throws CricketAnalyserException;
 
 
 }
