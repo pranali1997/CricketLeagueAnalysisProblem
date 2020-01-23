@@ -12,22 +12,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.StreamSupport;
 
-public class CricketLoader {
+public abstract class CricketAdapter {
 
     List<CricketAnalyzerDAO> listValue=new ArrayList<>();
 
-    public<E> List<CricketAnalyzerDAO> loadIPLData(String csvFilePath) throws CricketAnalyserException {
+    public<E> List<CricketAnalyzerDAO> loadIPLData(Class<E> CricketCSVClass,String... csvFilePath) throws CricketAnalyserException {
 
-     try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))){
+     try (Reader reader = Files.newBufferedReader(Paths.get(String.valueOf(csvFilePath[0])))){
         ICSVBuilder icsvBuilder = CSVBuilderFactory.createCSVBuilder();
-        if (csvFilePath=="./src/test/resources/IPL2019Runs.csv") {
-            List<E> playerList1 = icsvBuilder.getCSVList(reader, BatsmenAnalyzer.class);
+         List<E> playerList1 = icsvBuilder.getCSVList(reader, CricketCSVClass);
+        if (CricketCSVClass.getName().equals("CrickeAnalyzer.BatsmenAnalyzer")) {
             StreamSupport.stream(playerList1.spliterator(), false)
                     .map(BatsmenAnalyzer.class::cast)
                     .forEach(cricketCSV -> listValue.add(new CricketAnalyzerDAO(cricketCSV)));
         }
-         if (csvFilePath=="./src/test/resources/IPL2019Wickets.csv") {
-             List<E> playerList1= icsvBuilder.getCSVList(reader, BowlerAnalyzer.class);
+         if (CricketCSVClass.getName().equals("CrickeAnalyzer.BowlerAnalyzer")) {
              StreamSupport.stream(playerList1.spliterator(),false)
                      .map(BowlerAnalyzer.class::cast)
                      .forEach(cricketCSV -> listValue.add(new CricketAnalyzerDAO(cricketCSV)));
@@ -40,7 +39,12 @@ public class CricketLoader {
     } catch (CSVBuilderException e) {
         e.printStackTrace();
     }
-        return null;
+        return listValue;
     }
 
+
+    public abstract <E> List<CricketAnalyzerDAO> loadIPLData(String... csvFilePath) throws CricketAnalyserException;
+
+
 }
+

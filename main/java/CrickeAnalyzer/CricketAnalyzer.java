@@ -5,18 +5,33 @@ import java.util.stream.Collectors;
 
 public class CricketAnalyzer {
 
-    List<CricketAnalyzerDAO> cricketAnalyseList = new ArrayList<>();
+    public Cricket cricket;
+
+    public enum Cricket{
+        BATSMANS,BOWLERS}
 
 
-    public int loadCricketAnalyzerData(String csvFilePath) throws CricketAnalyserException {
+    public CricketAnalyzer(Cricket cricket) {
+        this.cricket = cricket;
+    }
 
+    List<CricketAnalyzerDAO> cricketAnalyseList = null;
+
+
+    public int loadCricketAnalyzerData(String... csvFilePath) throws CricketAnalyserException {
+
+        cricketAnalyseList=CricketAnalysisFactory.loadCricketAnalyzerData(cricket,csvFilePath);
+        return cricketAnalyseList.size();
+       /* cricketAnalyseList=CricketAnalysisFactory.loadCricketAnalyzerData(cricket,csvFilePath);
         if(csvFilePath=="./src/test/resources/IPL2019Runs.csv") {
-            this.cricketAnalyseList = new CricketLoader().loadIPLData(csvFilePath);
+            this.cricketAnalyseList = new CricketAdapter().loadCricketAnalyzerData(csvFilePath);
         }
         if(csvFilePath=="./src/test/resources/IPL2019Wickets.csv") {
-            this.cricketAnalyseList = new CricketLoader().loadIPLData(csvFilePath);
+            this.cricketAnalyseList = new CricketAdapter().loadCricketAnalyzerData(csvFilePath);
         }
         return cricketAnalyseList.size();
+*/
+
 
     }
 
