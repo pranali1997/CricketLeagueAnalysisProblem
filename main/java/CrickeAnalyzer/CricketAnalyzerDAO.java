@@ -22,6 +22,8 @@ public class CricketAnalyzerDAO {
     public double economicRate;
     public int fourWickets;
     public int fiveWickets;
+    public double bowlStrikeRate;
+    public double bowlAverage;
 
 
     public CricketAnalyzerDAO(BatsmenAnalyzer batsmenAnalyzer) {
@@ -47,8 +49,8 @@ public class CricketAnalyzerDAO {
         this.matches = bowlerAnalyzer.matches;
         this.innings = bowlerAnalyzer.innings;
         this.runs = bowlerAnalyzer.runs;
-        this.average = bowlerAnalyzer.average;
-        this.strikeRate = bowlerAnalyzer.strikeRate;
+        this.bowlAverage = bowlerAnalyzer.bowlAverage;
+        this.bowlStrikeRate = bowlerAnalyzer.bowlStrikeRate;
         this.overs = bowlerAnalyzer.overs;
         this.wickets = bowlerAnalyzer.wickets;
         this.bestBowlingInn = bowlerAnalyzer.bestBowlingInn;
@@ -80,6 +82,8 @@ public class CricketAnalyzerDAO {
                 ", economicRate=" + economicRate +
                 ", fourWickets=" + fourWickets +
                 ", fiveWickets=" + fiveWickets +
+                ", bowlStrikeRate=" + bowlStrikeRate +
                 '}';
     }
 }
+

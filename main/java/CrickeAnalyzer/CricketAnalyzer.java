@@ -15,22 +15,22 @@ public class CricketAnalyzer {
         this.cricket = cricket;
     }
 
-    List<CricketAnalyzerDAO> cricketAnalyseList = null;
+    Map<String,CricketAnalyzerDAO> cricketAnalyseMap = null;
 
 
     public int loadCricketAnalyzerData(String... csvFilePath) throws CricketAnalyserException {
 
-        cricketAnalyseList=CricketAnalysisFactory.loadCricketAnalyzerData(cricket,csvFilePath);
-        return cricketAnalyseList.size();
+        cricketAnalyseMap =CricketAnalysisFactory.loadCricketAnalyzerData(cricket,csvFilePath);
+        return cricketAnalyseMap.size();
 
     }
 
     public List<CricketAnalyzerDAO> getTopBatsmenRecords(SortFields.sortingFields sortFields) {
         Comparator<CricketAnalyzerDAO> comparator = new SortFields().getFieldCricketer(sortFields);
-        cricketAnalyseList = cricketAnalyseList.stream()
+        List listSorting = cricketAnalyseMap.values().stream()
                 .sorted(comparator.reversed())
                 .collect(Collectors.toList());
-        return this.cricketAnalyseList;
+        return listSorting;
     }
 
 }

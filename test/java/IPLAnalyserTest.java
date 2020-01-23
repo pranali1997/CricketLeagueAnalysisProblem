@@ -75,7 +75,7 @@ private String IPL_FACT_SHEET_WKTS_PATH="./src/test/resources/IPL2019Wickets.csv
     public void whenGivenSortedAverageBowlersData_shouldReturnSortedAverageDataInDescendingOrder() throws CricketAnalyserException {
         CricketAnalyzer iplAnalyzer = new CricketAnalyzer(CricketAnalyzer.Cricket.BOWLERS);
         iplAnalyzer.loadCricketAnalyzerData(IPL_FACT_SHEET_WKTS_PATH);
-        List<CricketAnalyzerDAO> iplAnalyzerCSVList=iplAnalyzer.getTopBatsmenRecords(SortFields.sortingFields.AVERAGE_RATE);
+        List<CricketAnalyzerDAO> iplAnalyzerCSVList=iplAnalyzer.getTopBatsmenRecords(SortFields.sortingFields.BOWLER_AVERAGE_RATE);
         Assert.assertEquals("Krishnappa Gowtham",iplAnalyzerCSVList.get(0).player);
     }
 
@@ -83,7 +83,7 @@ private String IPL_FACT_SHEET_WKTS_PATH="./src/test/resources/IPL2019Wickets.csv
     public void whenGivenSoredBowlersStrikeRate_ShouldReturnSortedStrikeRateDataInDescendingOrder() throws CricketAnalyserException {
         CricketAnalyzer iplAnalyzer=new CricketAnalyzer(CricketAnalyzer.Cricket.BOWLERS);
         iplAnalyzer.loadCricketAnalyzerData(IPL_FACT_SHEET_WKTS_PATH);
-        List<CricketAnalyzerDAO> iplCSVList=iplAnalyzer.getTopBatsmenRecords(SortFields.sortingFields.STRIKE_RATE);
+        List<CricketAnalyzerDAO> iplCSVList=iplAnalyzer.getTopBatsmenRecords(SortFields.sortingFields.BOWLER_STRIKE_RATE);
         Assert.assertEquals("Krishnappa Gowtham",iplCSVList.get(0).player);
     }
 
@@ -99,24 +99,24 @@ private String IPL_FACT_SHEET_WKTS_PATH="./src/test/resources/IPL2019Wickets.csv
     public void whenGivenSoredBowlersStrikeRateFourWicketsAndFiveWicketsRate_ShouldReturnSortedStrikeRateFourWicketsAndFiveWicketsRateDataInDescendingOrder() throws CricketAnalyserException {
         CricketAnalyzer iplAnalyzer=new CricketAnalyzer(CricketAnalyzer.Cricket.BOWLERS);
         iplAnalyzer.loadCricketAnalyzerData(IPL_FACT_SHEET_WKTS_PATH);
-        List<CricketAnalyzerDAO> iplCSVList=iplAnalyzer.getTopBatsmenRecords(SortFields.sortingFields.FOUR_WICKETS_AND_SIX_WICKETS_STRIKE);
+        List<CricketAnalyzerDAO> iplCSVList=iplAnalyzer.getTopBatsmenRecords(SortFields.sortingFields.BOWLER_FOUR_WICKETS_AND_FIVE_WICKETS_STRIKE);
         Assert.assertEquals("Krishnappa Gowtham",iplCSVList.get(0).player);
     }
     @Test
     public void whenGivenSortedAverageAndStrikeRateOfBowler_ShouldReturnHighestNumberOfAverageWithStrikeRate() throws CricketAnalyserException {
         CricketAnalyzer iplAnalyzer=new CricketAnalyzer(CricketAnalyzer.Cricket.BOWLERS);
         iplAnalyzer.loadCricketAnalyzerData(IPL_FACT_SHEET_WKTS_PATH);
-        List<CricketAnalyzerDAO> iplCSVList=iplAnalyzer.getTopBatsmenRecords(SortFields.sortingFields.AVERAGE_STRIKE_RATE);
+        List<CricketAnalyzerDAO> iplCSVList=iplAnalyzer.getTopBatsmenRecords(SortFields.sortingFields.BOWLER_AVERAGE_STRIKE_RATE);
         Assert.assertEquals("Krishnappa Gowtham",iplCSVList.get(0).player);
     }
 
     @Test
-    public void whenGivenSortedAverageAndFourSixWicketsRateOfBowler_ShouldReturnHighestNumberOfWicketsWithAverageRate() throws CricketAnalyserException {
+    public void whenGivenSortedAverageAndWicketsRateOfBowler_ShouldReturnHighestNumberOfWicketsWithAverageRate() throws CricketAnalyserException {
         CricketAnalyzer iplAnalyzer=new CricketAnalyzer(CricketAnalyzer.Cricket.BOWLERS);
         iplAnalyzer.loadCricketAnalyzerData(IPL_FACT_SHEET_WKTS_PATH);
         List<CricketAnalyzerDAO> iplCSVList=iplAnalyzer.getTopBatsmenRecords(SortFields.sortingFields.AVERAGE_WICKET_RATE);
         System.out.println(iplCSVList);
-        Assert.assertEquals("Krishnappa Gowtham",iplCSVList.get(0).player);
+        Assert.assertEquals("Imran Tahir",iplCSVList.get(0).player);
     }
 
 }

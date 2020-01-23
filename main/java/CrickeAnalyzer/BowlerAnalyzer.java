@@ -29,13 +29,13 @@ public class BowlerAnalyzer {
     public int bestBowlingInn;
 
     @CsvBindByName(column = "Avg", required = true)
-    public double  average;
+    public double  bowlAverage;
 
     @CsvBindByName(column = "Econ", required = true)
     public double economicRate;
 
     @CsvBindByName(column = "SR", required = true)
-    public double strikeRate;
+    public double bowlStrikeRate;
 
     @CsvBindByName(column = "4w", required = true)
     public int fourWickets;
@@ -46,22 +46,6 @@ public class BowlerAnalyzer {
 
     public BowlerAnalyzer() {
 
-    }
-
-    public BowlerAnalyzer(int pos, String player, int matches, int innings, double overs, int runs, int wickets, int bestBowlingInn, double average, double economicRate, double strikeRate, int fourWickets, int fiveWickets) {
-        this.pos = pos;
-        this.player = player;
-        this.matches = matches;
-        this.innings = innings;
-        this.overs = overs;
-        this.runs = runs;
-        this.wickets = wickets;
-        this.bestBowlingInn = bestBowlingInn;
-        this.average = average;
-        this.economicRate = economicRate;
-        this.strikeRate = strikeRate;
-        this.fourWickets = fourWickets;
-        this.fiveWickets = fiveWickets;
     }
 
     @Override
@@ -75,9 +59,9 @@ public class BowlerAnalyzer {
                 ", runs=" + runs +
                 ", wickets=" + wickets +
                 ", bestBowlingInn=" + bestBowlingInn +
-                ", average=" + average +
+                ", average=" + bowlAverage +
                 ", economicRate=" + economicRate +
-                ", strikeRate=" + strikeRate +
+                ", bowlStrikeRate=" + bowlStrikeRate +
                 ", fourWickets=" + fourWickets +
                 ", fiveWickets=" + fiveWickets +
                 '}';

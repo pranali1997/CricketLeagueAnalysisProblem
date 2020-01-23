@@ -1,10 +1,11 @@
 package CrickeAnalyzer;
 
 import java.util.List;
+import java.util.Map;
 
 public abstract class CricketAnalysisFactory {
 
-    public static<E> List<CricketAnalyzerDAO> loadCricketAnalyzerData(CricketAnalyzer.Cricket cricket, String... csvFilePath) throws CricketAnalyserException {
+    public static<E> Map<String,CricketAnalyzerDAO> loadCricketAnalyzerData(CricketAnalyzer.Cricket cricket, String... csvFilePath) throws CricketAnalyserException {
         if(cricket.equals(CricketAnalyzer.Cricket.BATSMANS)){
             return new BatsmanDataAnalyzerAdapter().loadIPLData(csvFilePath);
         }
