@@ -47,6 +47,9 @@ public class BatsmenAnalyzer {
     public int sixes;
 
 
+    public BatsmenAnalyzer() {
+    }
+
     public BatsmenAnalyzer(int pos, String player, int matches, int innings, int notOut, int runs, int highScore, double average, int ballFest, double strikeRate, int century, int halfCentury, int fours, int sixes) {
         this.pos = pos;
         this.player = player;
@@ -62,9 +65,6 @@ public class BatsmenAnalyzer {
         this.halfCentury = halfCentury;
         this.fours = fours;
         this.sixes = sixes;
-    }
-
-    public BatsmenAnalyzer() {
     }
 
     @Override

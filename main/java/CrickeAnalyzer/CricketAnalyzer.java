@@ -26,10 +26,11 @@ public class CricketAnalyzer {
 
     }
 
-    public List<CricketAnalyzerDAO> getTopBatsmenRecords(SortFields.sortingFields sortFields) {
+    public ArrayList getTopBatsmenRecords(SortFields.sortingFields sortFields) {
         Comparator<CricketAnalyzerDAO> comparator = new SortFields().getFieldCricketer(sortFields);
-        List listSorting = cricketAnalyseMap.values().stream()
+        ArrayList listSorting = (ArrayList) cricketAnalyseMap.values().stream()
                 .sorted(comparator)
+                .map(CricketDAO-> CricketDAO.getCricketDTO(cricket))
                 .collect(Collectors.toList());
         return listSorting;
     }

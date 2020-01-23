@@ -43,9 +43,23 @@ public class BowlerAnalyzer {
     @CsvBindByName(column = "5w", required = true)
     public int fiveWickets;
 
-
     public BowlerAnalyzer() {
+    }
 
+    public BowlerAnalyzer(int pos, String player, int matches, int innings, double overs, int runs, int wickets, int bestBowlingInn, double bowlAverage, double economicRate, double bowlStrikeRate, int fourWickets, int fiveWickets) {
+        this.pos = pos;
+        this.player = player;
+        this.matches = matches;
+        this.innings = innings;
+        this.overs = overs;
+        this.runs = runs;
+        this.wickets = wickets;
+        this.bestBowlingInn = bestBowlingInn;
+        this.bowlAverage = bowlAverage;
+        this.economicRate = economicRate;
+        this.bowlStrikeRate = bowlStrikeRate;
+        this.fourWickets = fourWickets;
+        this.fiveWickets = fiveWickets;
     }
 
     @Override

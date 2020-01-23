@@ -1,5 +1,7 @@
 package CrickeAnalyzer;
 
+import java.util.List;
+
 public class CricketAnalyzerDAO {
 
     public int pos;
@@ -85,5 +87,17 @@ public class CricketAnalyzerDAO {
                 ", bowlStrikeRate=" + bowlStrikeRate +
                 '}';
     }
+
+    public Object getCricketDTO(CricketAnalyzer.Cricket cricket){
+
+        if(cricket.equals(CricketAnalyzer.Cricket.BATSMANS)){
+            return new BatsmenAnalyzer( pos,  player, matches, innings, notOut, runs,  highScore,  average,  ballFest,  strikeRate, century, halfCentury, fours, sixes);
+        }
+        return new BowlerAnalyzer(pos, player, matches, innings,  overs,  runs,  wickets, bestBowlingInn,  bowlAverage,  economicRate,  bowlStrikeRate, fourWickets, fiveWickets);
+
+    }
+
+
+
 }
 
