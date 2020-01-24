@@ -13,7 +13,7 @@ private String IPL_FACT_SHEET_WKTS_PATH="./src/test/resources/IPL2019Wickets.csv
     public void whenGivenTopOfBothAverage_shouldReturnHighestAverage() throws CricketAnalyserException {
         CricketAnalyzer iplAnalyzer = new CricketAnalyzer(CricketAnalyzer.Cricket.BATBOWLMERGE);
         iplAnalyzer.loadCricketAnalyzerData(IPL_FACT_SHEET_RUNS_PATH,IPL_FACT_SHEET_WKTS_PATH);
-        List<BowlerAnalyzer> topBatsmenRecords = iplAnalyzer.getTopBatsmenRecords(SortFields.sortingFields.AVERAGE_RATE_BOTH);
+        List<BowlerAnalyzer> topBatsmenRecords = iplAnalyzer.getTopCricketRecords(SortFields.sortingFields.AVERAGE_RATE_BOTH);
         Assert.assertEquals("MS Dhoni",topBatsmenRecords.get(0).player);
         Assert.assertEquals("Harpreet Brar",topBatsmenRecords.get(99).player);
     }
@@ -23,7 +23,7 @@ private String IPL_FACT_SHEET_WKTS_PATH="./src/test/resources/IPL2019Wickets.csv
     public void whenGivenTopOfBothRunsAndWickets_shouldReturnAllRounderCricketer() throws CricketAnalyserException {
         CricketAnalyzer iplAnalyzer = new CricketAnalyzer(CricketAnalyzer.Cricket.BATBOWLMERGE);
         iplAnalyzer.loadCricketAnalyzerData(IPL_FACT_SHEET_RUNS_PATH,IPL_FACT_SHEET_WKTS_PATH);
-        List<BowlerAnalyzer> topBatsmenRecords = iplAnalyzer.getTopBatsmenRecords(SortFields.sortingFields.ALL_ROUNDER_CRICKETER);
+        List<BowlerAnalyzer> topBatsmenRecords = iplAnalyzer.getTopCricketRecords(SortFields.sortingFields.ALL_ROUNDER_CRICKETER);
         Assert.assertEquals("Andre Russell",topBatsmenRecords.get(0).player);
     }
 

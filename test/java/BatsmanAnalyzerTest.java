@@ -22,7 +22,7 @@ public class BatsmanAnalyzerTest {
     public void whenGivenTopAverage_shouldReturnHighestAverage() throws CricketAnalyserException {
         CricketAnalyzer iplAnalyzer = new CricketAnalyzer(CricketAnalyzer.Cricket.BATSMANS);
         iplAnalyzer.loadCricketAnalyzerData(IPL_FACT_SHEET_RUNS_PATH);
-        List<BatsmenAnalyzer> topBatsmenRecords = iplAnalyzer.getTopBatsmenRecords(SortFields.sortingFields.AVERAGE_RATE);
+        List<BatsmenAnalyzer> topBatsmenRecords = iplAnalyzer.getTopCricketRecords(SortFields.sortingFields.AVERAGE_RATE);
         Assert.assertEquals("MS Dhoni",topBatsmenRecords.get(0).player);
     }
 
@@ -30,7 +30,7 @@ public class BatsmanAnalyzerTest {
     public void whenGivenSoredStrikeRate_ShouldReturnHighestRecord() throws CricketAnalyserException {
         CricketAnalyzer iplAnalyzer=new CricketAnalyzer(CricketAnalyzer.Cricket.BATSMANS);
         iplAnalyzer.loadCricketAnalyzerData(IPL_FACT_SHEET_RUNS_PATH);
-        List<BatsmenAnalyzer> iplCSVList=iplAnalyzer.getTopBatsmenRecords(SortFields.sortingFields.STRIKE_RATE);
+        List<BatsmenAnalyzer> iplCSVList=iplAnalyzer.getTopCricketRecords(SortFields.sortingFields.STRIKE_RATE);
         Assert.assertEquals("Ishant Sharma",iplCSVList.get(0).player);
     }
 
@@ -38,7 +38,7 @@ public class BatsmanAnalyzerTest {
     public void whenGivenSortedFoursAndSixes_ShouldReturnHighestNumberOfFOrsAndSixes() throws CricketAnalyserException {
         CricketAnalyzer iplAnalyzer=new CricketAnalyzer(CricketAnalyzer.Cricket.BATSMANS);
         iplAnalyzer.loadCricketAnalyzerData(IPL_FACT_SHEET_RUNS_PATH);
-        List<BatsmenAnalyzer> iplAnalyzerCSVList=iplAnalyzer.getTopBatsmenRecords(SortFields.sortingFields.FOUR_SIX_RATE);
+        List<BatsmenAnalyzer> iplAnalyzerCSVList=iplAnalyzer.getTopCricketRecords(SortFields.sortingFields.FOUR_SIX_RATE);
         Assert.assertEquals("Andre Russell",iplAnalyzerCSVList.get(0).player);
     }
 
@@ -46,7 +46,7 @@ public class BatsmanAnalyzerTest {
     public void whenGivenSortedFoursAndSixesAndStrikeRate_ShouldReturnHighestNumberOfFOrsAndSixes() throws CricketAnalyserException {
         CricketAnalyzer iplAnalyzer=new CricketAnalyzer(CricketAnalyzer.Cricket.BATSMANS);
         iplAnalyzer.loadCricketAnalyzerData(IPL_FACT_SHEET_RUNS_PATH);
-        List<BatsmenAnalyzer> iplAnalyzerCSVList=iplAnalyzer.getTopBatsmenRecords(SortFields.sortingFields.FOUR_SIX_STRIKE_RATE);
+        List<BatsmenAnalyzer> iplAnalyzerCSVList=iplAnalyzer.getTopCricketRecords(SortFields.sortingFields.FOUR_SIX_STRIKE_RATE);
         Assert.assertEquals("Andre Russell",iplAnalyzerCSVList.get(0).player);
     }
 
@@ -54,7 +54,7 @@ public class BatsmanAnalyzerTest {
     public void whenGivenSortedAverageAndStrikeRate_ShouldReturnHighestNumberOfAverageWithStrikeRate() throws CricketAnalyserException {
         CricketAnalyzer iplAnalyzer=new CricketAnalyzer(CricketAnalyzer.Cricket.BATSMANS);
         iplAnalyzer.loadCricketAnalyzerData(IPL_FACT_SHEET_RUNS_PATH);
-        List<BatsmenAnalyzer> iplAnalyzerCSVList=iplAnalyzer.getTopBatsmenRecords(SortFields.sortingFields.AVERAGE_STRIKE_RATE);
+        List<BatsmenAnalyzer> iplAnalyzerCSVList=iplAnalyzer.getTopCricketRecords(SortFields.sortingFields.AVERAGE_STRIKE_RATE);
         Assert.assertEquals("MS Dhoni",iplAnalyzerCSVList.get(0).player);
     }
 
@@ -62,7 +62,7 @@ public class BatsmanAnalyzerTest {
     public void whenGivenSortedAverageAndRuns_ShouldReturnHighestNumberOfAverageWithRuns() throws CricketAnalyserException {
         CricketAnalyzer iplAnalyzer=new CricketAnalyzer(CricketAnalyzer.Cricket.BATSMANS);
         iplAnalyzer.loadCricketAnalyzerData(IPL_FACT_SHEET_RUNS_PATH);
-        List<BatsmenAnalyzer> iplAnalyzerCSVList=iplAnalyzer.getTopBatsmenRecords(SortFields.sortingFields.RUNS_AVERAGE_RATE);
+        List<BatsmenAnalyzer> iplAnalyzerCSVList=iplAnalyzer.getTopCricketRecords(SortFields.sortingFields.RUNS_AVERAGE_RATE);
         Assert.assertEquals("David Warner",iplAnalyzerCSVList.get(0).player);
     }
 

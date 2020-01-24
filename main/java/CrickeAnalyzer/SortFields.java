@@ -72,7 +72,6 @@ public class SortFields {
             return 0;
 
         });
-
         compareBatsmanHashMap.put(SortFields.sortingFields.ALL_ROUNDER_CRICKETER,allRound.reversed());
 
 

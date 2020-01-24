@@ -26,7 +26,7 @@ public class CricketAnalyzer {
 
     }
 
-    public ArrayList getTopBatsmenRecords(SortFields.sortingFields sortFields) {
+    public ArrayList getTopCricketRecords(SortFields.sortingFields sortFields) {
         Comparator<CricketAnalyzerDAO> comparator = new SortFields().getFieldCricketer(sortFields);
         ArrayList listSorting = (ArrayList) cricketAnalyseMap.values().stream()
                 .sorted(comparator)
