@@ -128,6 +128,18 @@ private String IPL_FACT_SHEET_WKTS_PATH="./src/test/resources/IPL2019Wickets.csv
         Assert.assertEquals("Harpreet Brar",topBatsmenRecords.get(99).player);
     }
 
+
+    @Test
+    public void whenGivenTopOfBothRunsAndWickets_shouldReturnAllRounderCricketer() throws CricketAnalyserException {
+        CricketAnalyzer iplAnalyzer = new CricketAnalyzer(CricketAnalyzer.Cricket.BATBOWLMERGE);
+        iplAnalyzer.loadCricketAnalyzerData(IPL_FACT_SHEET_RUNS_PATH,IPL_FACT_SHEET_WKTS_PATH);
+        List<BowlerAnalyzer> topBatsmenRecords = iplAnalyzer.getTopBatsmenRecords(SortFields.sortingFields.ALL_ROUNDER_CRICKETER);
+        for(int i=0;i< topBatsmenRecords.size(); i++){
+            System.out.println(" "+topBatsmenRecords.get(i).player+ " "+ topBatsmenRecords.get(i).runs);
+        }
+        Assert.assertEquals("Andre Russell",topBatsmenRecords.get(0).player);
+    }
+
 }
 
 

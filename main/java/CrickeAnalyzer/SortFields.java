@@ -6,7 +6,7 @@ import java.util.*;
 public class SortFields {
 
     public enum sortingFields {
-        AVERAGE_RATE, BOWLER_AVERAGE_RATE,STRIKE_RATE,BOWLER_STRIKE_RATE, FOUR_SIX_RATE, FOUR_SIX_STRIKE_RATE, AVERAGE_STRIKE_RATE, BOWLER_AVERAGE_STRIKE_RATE,RUNS_AVERAGE_RATE, ECONOMY_RATE , FOUR_WICKETS_AND_FIVE_WICKETS, FOUR_WICKETS_AND_FIVE_WICKETS_STRIKE, BOWLER_FOUR_WICKETS_AND_FIVE_WICKETS_STRIKE, AVERAGE_WICKET_RATE,AVERAGE_RATE_BOTH;
+        AVERAGE_RATE, BOWLER_AVERAGE_RATE,STRIKE_RATE,BOWLER_STRIKE_RATE, FOUR_SIX_RATE, FOUR_SIX_STRIKE_RATE, AVERAGE_STRIKE_RATE, BOWLER_AVERAGE_STRIKE_RATE,RUNS_AVERAGE_RATE, ECONOMY_RATE , FOUR_WICKETS_AND_FIVE_WICKETS, FOUR_WICKETS_AND_FIVE_WICKETS_STRIKE, BOWLER_FOUR_WICKETS_AND_FIVE_WICKETS_STRIKE, AVERAGE_WICKET_RATE,AVERAGE_RATE_BOTH, ALL_ROUNDER_CRICKETER;
     }
 
     Map<sortingFields, Comparator<CricketAnalyzerDAO>> compareBatsmanHashMap = new HashMap<>();
@@ -64,6 +64,16 @@ public class SortFields {
 
         compareBatsmanHashMap.put(SortFields.sortingFields.AVERAGE_RATE_BOTH,compareBatsmanHashMap.get(SortFields.sortingFields.AVERAGE_RATE)
          .thenComparing(compareBatsmanHashMap.get(SortFields.sortingFields.BOWLER_AVERAGE_RATE)));
+
+
+        Comparator<CricketAnalyzerDAO> allRound=Comparator.comparing(CricketAnalyzerDAO -> {
+            if(CricketAnalyzerDAO.wickets > 7 && CricketAnalyzerDAO.runs > 150)
+                return CricketAnalyzerDAO.runs + (CricketAnalyzerDAO.wickets*20);
+            return 0;
+
+        });
+
+        compareBatsmanHashMap.put(SortFields.sortingFields.ALL_ROUNDER_CRICKETER,allRound.reversed());
 
 
         Comparator comparator = compareBatsmanHashMap.get(sortingFields);

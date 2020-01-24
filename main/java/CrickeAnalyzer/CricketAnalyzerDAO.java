@@ -1,7 +1,5 @@
 package CrickeAnalyzer;
 
-import java.util.List;
-
 public class CricketAnalyzerDAO {
 
     public int pos;

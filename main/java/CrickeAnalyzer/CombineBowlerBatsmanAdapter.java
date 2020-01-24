@@ -11,7 +11,10 @@ public class CombineBowlerBatsmanAdapter extends CricketAdapter {
         Map<String,CricketAnalyzerDAO> cricketBowlerDAO=super.loadIPLData(BowlerAnalyzer.class,csvFilePath[1]);
         cricketBowlerDAO.values().stream()
                 .filter(cricketData-> cricketBatsmanDAO.get(cricketData.player)!=null)
-                .forEach(cricketData->cricketBatsmanDAO.get(cricketData.player).bowlAverage=cricketData.bowlAverage);
+                .forEach(cricketData->{cricketBatsmanDAO.get(cricketData.player).
+                        bowlAverage=cricketData.bowlAverage;
+                        cricketBatsmanDAO.get(cricketData.player).wickets=cricketData.wickets;
+                });
 
         return cricketBatsmanDAO;
 
