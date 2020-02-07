@@ -1,8 +1,10 @@
 package CrickeAnalyzer;
 
-import CSVBuilder.CSVBuilderException;
-import CSVBuilder.CSVBuilderFactory;
-import CSVBuilder.ICSVBuilder;
+
+
+import csvBuilder.CSVBuilderFactory;
+import csvBuilder.CsvBuilderException;
+import csvBuilder.ICSVBuilder;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -16,12 +18,12 @@ import java.util.stream.StreamSupport;
 public abstract class CricketAdapter {
 
 
-    public<E> Map<String,CricketAnalyzerDAO> loadIPLData(Class<E> CricketCSVClass, String... csvFilePath) throws CricketAnalyserException {
+    public<E> Map<String,CricketAnalyzerDAO> loadIPLData(Class<E> CricketCSVClass, String... csvFilePath) throws CricketAnalyserException, CsvBuilderException {
         Map<String,CricketAnalyzerDAO> mapValue =new TreeMap<>();
 
      try (Reader reader = Files.newBufferedReader(Paths.get(String.valueOf(csvFilePath[0])))){
         ICSVBuilder icsvBuilder = CSVBuilderFactory.createCSVBuilder();
-         List<E> playerList1 = icsvBuilder.getCSVList(reader, CricketCSVClass);
+         List<E> playerList1 = icsvBuilder.getCSVFileList(reader, CricketCSVClass);
         if (CricketCSVClass.getName().equals("CrickeAnalyzer.BatsmenAnalyzer")) {
             StreamSupport.stream(playerList1.spliterator(), false)
                     .map(BatsmenAnalyzer.class::cast)
@@ -37,7 +39,7 @@ public abstract class CricketAdapter {
     }    catch (IOException e) {
         throw new CricketAnalyserException(e.getMessage(),
                 CricketAnalyserException.ExceptionType.IPL_FILE_PROBLEM);
-    } catch (CSVBuilderException e) {
+    } catch (CsvBuilderException e) {
         e.printStackTrace();
     }
         return mapValue;

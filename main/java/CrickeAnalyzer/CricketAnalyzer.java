@@ -1,11 +1,19 @@
 package CrickeAnalyzer;
 
+import csvBuilder.CsvBuilderException;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class CricketAnalyzer {
 
     public Cricket cricket;
+    private CricketAnalysisLoader cricketAnalyzerFactory=new CricketAnalysisLoader();
+
+    public CricketAnalyzer(CricketAnalysisLoader cricketAnalysisLoaderMock, Cricket cricket) {
+        this.cricketAnalyzerFactory= cricketAnalysisLoaderMock;
+        this.cricket=cricket;
+    }
 
     public enum Cricket{
         BATSMANS,BOWLERS,BATBOWLMERGE}
@@ -18,10 +26,9 @@ public class CricketAnalyzer {
     Map<String,CricketAnalyzerDAO> cricketAnalyseMap = new TreeMap<>();
 
 
-    public int loadCricketAnalyzerData(String... csvFilePath) throws CricketAnalyserException {
+    public int loadCricketAnalyzerData(String... csvFilePath) throws CricketAnalyserException, CsvBuilderException {
 
-        cricketAnalyseMap =CricketAnalysisFactory.loadCricketAnalyzerData(cricket,csvFilePath);
-        System.out.println(cricketAnalyseMap);
+        cricketAnalyseMap = cricketAnalyzerFactory.loadCricketAnalyzerData(cricket,csvFilePath);
         return cricketAnalyseMap.size();
 
     }
@@ -34,5 +41,4 @@ public class CricketAnalyzer {
                 .collect(Collectors.toList());
         return listSorting;
     }
-
 }

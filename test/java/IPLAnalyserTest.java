@@ -1,4 +1,5 @@
 import CrickeAnalyzer.*;
+import csvBuilder.CsvBuilderException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -10,7 +11,7 @@ private  String IPL_FACT_SHEET_RUNS_PATH="./src/test/resources/IPL2019Runs.csv";
 private String IPL_FACT_SHEET_WKTS_PATH="./src/test/resources/IPL2019Wickets.csv";
 
     @Test
-    public void whenGivenTopOfBothAverage_shouldReturnHighestAverage() throws CricketAnalyserException {
+    public void whenGivenTopOfBothAverage_shouldReturnHighestAverage() throws CricketAnalyserException, CsvBuilderException {
         CricketAnalyzer iplAnalyzer = new CricketAnalyzer(CricketAnalyzer.Cricket.BATBOWLMERGE);
         iplAnalyzer.loadCricketAnalyzerData(IPL_FACT_SHEET_RUNS_PATH,IPL_FACT_SHEET_WKTS_PATH);
         List<BowlerAnalyzer> topBatsmenRecords = iplAnalyzer.getTopCricketRecords(SortFields.sortingFields.AVERAGE_RATE_BOTH);
@@ -20,7 +21,7 @@ private String IPL_FACT_SHEET_WKTS_PATH="./src/test/resources/IPL2019Wickets.csv
 
 
     @Test
-    public void whenGivenTopOfBothRunsAndWickets_shouldReturnAllRounderCricketer() throws CricketAnalyserException {
+    public void whenGivenTopOfBothRunsAndWickets_shouldReturnAllRounderCricketer() throws CricketAnalyserException, CsvBuilderException {
         CricketAnalyzer iplAnalyzer = new CricketAnalyzer(CricketAnalyzer.Cricket.BATBOWLMERGE);
         iplAnalyzer.loadCricketAnalyzerData(IPL_FACT_SHEET_RUNS_PATH,IPL_FACT_SHEET_WKTS_PATH);
         List<BowlerAnalyzer> topBatsmenRecords = iplAnalyzer.getTopCricketRecords(SortFields.sortingFields.ALL_ROUNDER_CRICKETER);

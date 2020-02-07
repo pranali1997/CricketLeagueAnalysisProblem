@@ -59,6 +59,10 @@ public class CricketAnalyzerDAO {
         this.fiveWickets = bowlerAnalyzer.fiveWickets;
     }
 
+    public CricketAnalyzerDAO() {
+
+    }
+
     @Override
     public String toString() {
         return "CricketAnalyzerDAO{" +
